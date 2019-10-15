@@ -1,3 +1,4 @@
+import random
 menyFel = False
 menyLoop = True
 spelare1Score = 0
@@ -67,13 +68,23 @@ while True:
                 pass
             if någonVann:
                 if vinst == 1:
-                    print("spelare 1 vann congratz")
+                    print("Spelare 1 vann congratz!")
                     menyLoop = True
                     break
                 elif vinst == 2:
-                    print("spelare 2 vann congratz elr nåt")
+                    print("Spelare 2 vann congratz!")
                     menyLoop = True
                     break
                 else:
                     print("något gick fel")
 
+        if menyVal == 2:
+            while True:
+                print('Välj "Sten", "Sax", "Påse"')
+                spelarVal = input("Val: ").lower()
+                if spelarVal == "sten" or spelarVal == "sax" or spelarVal == "påse":
+                    break
+                else:
+                    print("Välj något av alternativen")
+            datorVal = random.randint(1,3)
+            
