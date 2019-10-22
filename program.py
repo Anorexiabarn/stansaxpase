@@ -6,7 +6,8 @@ spelare2Score = 0
 datorScore = 0
 spelareScore = 0
 firstStart = 0
-font = pyfiglet.Figlet(font="speed")
+rundor = ""
+font = pyfiglet.Figlet(font="epic")
 spelare1Vann = font.renderText("Spelare1\nVann")
 spelare2Vann = font.renderText("Spelare2\nVann")
 spelareVann = font.renderText("Spelare\nVann")
@@ -22,20 +23,41 @@ while True:
             spelare2Score = 0
             datorScore = 0
             spelareScore = 0
+            rundor = ""
             if firstStart == 0:
                 print(menyText)
                 firstStart += 1
             else:
                 pass
             try:
-                menyVal = int(input("Meny: Spela mot andra[1], Spela mot datorn[2], Avsluta[3]"))
+                print("Meny:\n\n     PVP[1]\n     PVE[2]\nRageQuit[3]")
+                menyVal = int(input("\nVal:"))
             except(ValueError):
                 print("Välj 1,2,3")
                 menyFel = True
             if menyFel:
                 pass
             elif menyVal == 1 or menyVal == 2 or menyVal == 3:
-                menyLoop = False
+                while True:
+                    if menyVal == 3:
+                        menyLoop = False
+                        break
+                    else:
+                        print("Välj antalet rundor.")
+                    try:
+                        
+                        rundor = int(input("Rundor:"))
+                    except:
+                        if rundor == "":
+                            rundor = 3
+                            menyLoop = False
+                            break
+                        else:
+                    
+                            print("Endast heltal.")
+                    else:
+                        menyLoop = False
+                        break
             else:
                 print("Välj 1,2,3")
         if menyVal == 1:
@@ -74,7 +96,7 @@ while True:
             elif spelare1Val == "påse" and spelare2Val == "sten":
                 spelare1Score += 1
             print(f"Spelare1: {str(spelare1Score)} Spelare2: {str(spelare2Score)}")
-            if spelare1Score + spelare2Score == 3:
+            if spelare1Score + spelare2Score == rundor:
                 if spelare1Score > spelare2Score:
                     vinst = 1
                     någonVann = True
@@ -103,7 +125,7 @@ while True:
                     break
                 else:
                     print("Välj något av alternativen")
-            datorNumber = random.randint(1,3) # får fatorn att välja ett random number som är sten sax eller påse och sedan ska programmet fungera likadant som när man möter andra spelare.
+            datorNumber = random.randint(1,3)
             if datorNumber == 1:
                 datorVal = "sten"
             elif datorNumber == 2:
@@ -131,7 +153,7 @@ while True:
                 spelareScore += 1
             print(f"Datorn valde: {datorVal.capitalize()}")
             print(f"Spelare: {str(spelareScore)} Dator: {str(datorScore)}")
-            if spelareScore + datorScore == 3:
+            if spelareScore + datorScore == rundor:
                 if spelareScore > datorScore:
                     vinst = 1
                     någonVann = True
