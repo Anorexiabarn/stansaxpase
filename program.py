@@ -1,17 +1,18 @@
-import random, getpass, pyfiglet
+import random, getpass, pyfiglet, time
 menyFel = False
 menyLoop = True
 spelare1Score = 0
 spelare2Score = 0
 datorScore = 0
 spelareScore = 0
-first
-font = pyfiglet.Figlet(font="acrobatic")
+firstStart = 0
+font = pyfiglet.Figlet(font="speed")
 spelare1Vann = font.renderText("Spelare1\nVann")
 spelare2Vann = font.renderText("Spelare2\nVann")
 spelareVann = font.renderText("Spelare\nVann")
 datorVann = font.renderText("Datorn\nVann")
-menyText = font.renderText("Sten\nSax\nPåse")
+menyText = font.renderText("Sten\nSax\nPase")
+l8r = font.renderText("L8r\nKiddo")
 while True:
     while True:
         while menyLoop:
@@ -21,7 +22,11 @@ while True:
             spelare2Score = 0
             datorScore = 0
             spelareScore = 0
-
+            if firstStart == 0:
+                print(menyText)
+                firstStart += 1
+            else:
+                pass
             try:
                 menyVal = int(input("Meny: Spela mot andra[1], Spela mot datorn[2], Avsluta[3]"))
             except(ValueError):
@@ -80,11 +85,11 @@ while True:
                 pass
             if någonVann:
                 if vinst == 1:
-                    print("Spelare 1 vann congratz!")
+                    print(spelare1Vann)
                     menyLoop = True
                     break
                 elif vinst == 2:
-                    print("Spelare 2 vann congratz!")
+                    print(spelare2Vann)
                     menyLoop = True
                     break
                 else:
@@ -137,14 +142,16 @@ while True:
                 pass
             if någonVann:
                 if vinst == 1:
-                    print("Du vann congratz!")
+                    print(spelareVann)
                     menyLoop = True
                     break
                 elif vinst == 2:
-                    print("Dator vann GEGE l2p")
+                    print(datorVann)
                     menyLoop = True
                     break
                 else:
                     print("något gick fel")
         if menyVal == 3:
+            print(l8r)
+            time.sleep(3)
             exit()
