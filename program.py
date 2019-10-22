@@ -1,8 +1,10 @@
-import random
+import random, getpass
 menyFel = False
 menyLoop = True
 spelare1Score = 0
 spelare2Score = 0
+datorScore = 0
+spelareScore = 0
 
 
 while True:
@@ -10,6 +12,10 @@ while True:
         while menyLoop:
             någonVann = False
             vinst = 0
+            spelare1Score = 0
+            spelare2Score = 0
+            datorScore = 0
+            spelareScore = 0
             try:
                 menyVal = int(input("Meny: Spela mot andra[1], Spela mot datorn[2], Avsluta[3]"))
             except(ValueError):
@@ -25,7 +31,7 @@ while True:
             while True:
                 print("Spelare 1")
                 print('Välj "Sten", "Sax", eller "Påse"')
-                spelare1Val = input("Val: ").lower()
+                spelare1Val = getpass.getpass("Val: ").lower()
                 if spelare1Val == "sten" or spelare1Val == "sax" or spelare1Val == "påse":
                     break
                 else:
@@ -33,7 +39,7 @@ while True:
             while True:
                 print("Spelare 2")
                 print('Välj "Sten", "Sax", eller "Påse"')
-                spelare2Val = input("Val: ").lower()
+                spelare2Val = getpass.getpass("Val: ").lower()
                 if spelare2Val == "sten" or spelare2Val == "sax" or spelare2Val == "påse":
                     break
                 else:
@@ -81,10 +87,58 @@ while True:
         if menyVal == 2:
             while True:
                 print('Välj "Sten", "Sax", "Påse"')
-                spelarVal = input("Val: ").lower()
-                if spelarVal == "sten" or spelarVal == "sax" or spelarVal == "påse":
+                spelareVal = input("Val: ").lower()
+                if spelareVal == "sten" or spelareVal == "sax" or spelareVal == "påse":
                     break
                 else:
                     print("Välj något av alternativen")
-            datorVal = random.randint(1,3)
-            
+            datorNumber = random.randint(1,3) # får fatorn att välja ett random number som är sten sax eller påse och sedan ska programmet fungera likadant som när man möter andra spelare.
+            if datorNumber == 1:
+                datorVal = "sten"
+            elif datorNumber == 2:
+                datorVal = "sax"
+            elif datorNumber == 3:
+                datorVal = "påse"
+
+            if spelareVal == "sten" and datorVal == "sten":
+                pass
+            elif spelareVal == "sten" and datorVal == "sax":
+                spelareScore += 1
+            elif spelareVal == "sten" and datorVal == "påse":
+                datorScore += 1
+            elif spelareVal == "sax" and datorVal == "sax":
+                pass
+            elif spelareVal == "sax" and datorVal == "sten":
+                datorScore += 1
+            elif spelareVal == "sax" and datorVal == "påse":
+                spelareScore += 1
+            elif spelareVal == "påse" and datorVal == "påse":
+                pass
+            elif spelareVal == "påse" and datorVal == "sax":
+                datorScore += 1
+            elif spelareVal == "påse" and datorVal == "sten":
+                spelareScore += 1
+            print(f"Datorn valde: {datorVal.capitalize()}")
+            print(f"Spelare: {str(spelareScore)} Dator: {str(datorScore)}")
+            if spelareScore + datorScore == 3:
+                if spelareScore > datorScore:
+                    vinst = 1
+                    någonVann = True
+                elif spelareScore < datorScore:
+                    vinst = 2
+                    någonVann = True
+            else:
+                pass
+            if någonVann:
+                if vinst == 1:
+                    print("Du vann congratz!")
+                    menyLoop = True
+                    break
+                elif vinst == 2:
+                    print("Dator vann GEGE l2p")
+                    menyLoop = True
+                    break
+                else:
+                    print("något gick fel")
+        if menyVal == 3:
+            exit()
