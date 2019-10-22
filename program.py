@@ -45,7 +45,6 @@ while True:
                     else:
                         print("Välj antalet rundor.")
                     try:
-                        
                         rundor = int(input("Rundor:"))
                     except:
                         if rundor == "":
