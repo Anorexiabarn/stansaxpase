@@ -1,12 +1,17 @@
-import random, getpass
+import random, getpass, pyfiglet
 menyFel = False
 menyLoop = True
 spelare1Score = 0
 spelare2Score = 0
 datorScore = 0
 spelareScore = 0
-
-
+first
+font = pyfiglet.Figlet(font="acrobatic")
+spelare1Vann = font.renderText("Spelare1\nVann")
+spelare2Vann = font.renderText("Spelare2\nVann")
+spelareVann = font.renderText("Spelare\nVann")
+datorVann = font.renderText("Datorn\nVann")
+menyText = font.renderText("Sten\nSax\nPåse")
 while True:
     while True:
         while menyLoop:
@@ -16,6 +21,7 @@ while True:
             spelare2Score = 0
             datorScore = 0
             spelareScore = 0
+
             try:
                 menyVal = int(input("Meny: Spela mot andra[1], Spela mot datorn[2], Avsluta[3]"))
             except(ValueError):
